@@ -1,11 +1,11 @@
 package org.sambaran.library.api;
 
+import org.sambaran.library.ejb.BookService;
 import org.sambaran.library.model.Book;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -13,23 +13,19 @@ import java.util.List;
 
 @Path("books")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class LibraryApi {
 
+    @Inject
+    BookService bookService;
+
     @GET
-    public Response getAllBooks(){
-        Book firstBook=new Book();
-        firstBook.setId(1);
-        firstBook.setIsbn("123-45678-123");
-        firstBook.setName("Head First Java");
+    public Response getAllBooks() {
+        return Response.ok(bookService.getBooks()).build();
+    }
 
-        Book secondBook=new Book();
-        secondBook.setId(2);
-        secondBook.setIsbn("234-5657-221");
-        secondBook.setName("Clean Code");
-
-        List<Book> books=new ArrayList<>();
-        books.add(firstBook);
-        books.add(secondBook);
-        return Response.ok(books).build();
+    @POST
+    public void addBook(Book book) {
+        bookService.addBook(book);
     }
 }
