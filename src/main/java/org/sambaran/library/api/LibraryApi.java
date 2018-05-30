@@ -28,4 +28,10 @@ public class LibraryApi {
     public void addBook(Book book) {
         bookService.addBook(book);
     }
+
+    @GET
+    @Path("{id}")
+    public Response getBookById(@PathParam("id") int id){
+        return Response.ok(bookService.getBookById(id)).build();
+    }
 }
