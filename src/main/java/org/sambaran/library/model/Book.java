@@ -7,6 +7,7 @@ public class Book {
     private int id;
     private String isbn;
     private String name;
+    private BookCategory bookCategory;
 
     public int getId() {
         return id;
@@ -32,12 +33,21 @@ public class Book {
         this.name = name;
     }
 
+    public BookCategory getBookCategory() {
+        return bookCategory;
+    }
+
+    public void setBookCategory(BookCategory bookCategory) {
+        this.bookCategory = bookCategory;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", isbn='" + isbn + '\'' +
                 ", name='" + name + '\'' +
+                ", bookCategory=" + bookCategory +
                 '}';
     }
 }

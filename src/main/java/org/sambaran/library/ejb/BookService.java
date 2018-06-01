@@ -1,5 +1,6 @@
 package org.sambaran.library.ejb;
 
+import org.sambaran.library.control.BookRepository;
 import org.sambaran.library.model.Book;
 
 import javax.ejb.Stateless;
@@ -10,17 +11,18 @@ import java.util.Optional;
 
 @Stateless
 public class BookService {
-    private List<Book> bookList = new ArrayList<>();
+    @Inject
+    private BookRepository bookRepository;
 
     public List<Book> getBooks() {
-        return bookList;
+        return bookRepository.getAllBooks();
     }
 
     public void addBook(Book book) {
-        bookList.add(book);
+        bookRepository.store(book);
     }
 
     public Book getBookById(int id) {
-        return bookList.stream().filter(b->b.getId()==id).findAny().orElse(null);
+        return bookRepository.getBookById(id);
     }
 }
