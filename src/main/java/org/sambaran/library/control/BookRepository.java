@@ -2,15 +2,16 @@ package org.sambaran.library.control;
 
 import org.sambaran.library.model.Book;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
-@Singleton
+@ApplicationScoped
 public class BookRepository {
-    @Inject
-    private List<Book> books;
+
+    private List<Book> books = new ArrayList<>();
 
     public List<Book> getAllBooks() {
         return books;

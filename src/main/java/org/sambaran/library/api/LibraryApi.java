@@ -5,6 +5,7 @@ import org.sambaran.library.model.Book;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -25,8 +26,8 @@ public class LibraryApi {
     }
 
     @POST
-    public void addBook(Book book) {
-        bookService.addBook(book);
+    public Response addBook(@Valid Book book) {
+        return Response.ok(bookService.addBook(book)).build();
     }
 
     @GET
