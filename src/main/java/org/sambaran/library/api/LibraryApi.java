@@ -18,6 +18,7 @@ import java.util.List;
 public class LibraryApi {
 
     @Inject
+    private
     BookService bookService;
 
     @GET
@@ -32,7 +33,7 @@ public class LibraryApi {
 
     @GET
     @Path("{id}")
-    public Response getBookById(@PathParam("id") int id){
+    public Response getBookById(@PathParam("id") int id) {
         return Response.ok(bookService.getBookById(id)).build();
     }
 }
