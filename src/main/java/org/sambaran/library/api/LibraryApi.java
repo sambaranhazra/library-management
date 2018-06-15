@@ -17,14 +17,21 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class LibraryApi {
 
-    @Inject
+    @EJB
     private
     BookService bookService;
 
-    @GET
+    public BookService getBookService() {
+        return bookService;
+    }
+
+    public void setBookService(BookService bookService) {
+        this.bookService = bookService;
+    }
+    /*@GET
     public Response getAllBooks() {
         return Response.ok(bookService.getBooks()).build();
-    }
+    }*/
 
     @POST
     public Response addBook(@Valid Book book) {

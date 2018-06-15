@@ -1,14 +1,14 @@
 package org.sambaran.library.model;
 
 import javax.enterprise.inject.Default;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+//@PersistenceUnit(name = "libary-jpa")
 @Default
 @Entity
 public class Book {
-    @Id
+    @Id @GeneratedValue
     private int id;
     @NotNull
     private String isbn;
